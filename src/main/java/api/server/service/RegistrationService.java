@@ -1,8 +1,9 @@
 package api.server.service;
 
 import api.server.entity.User;
+import api.server.service.dto.UserDto;
 
 public interface RegistrationService {
 
-    User addUser(User user);
+    UserDto addUser(UserDto user);
 }

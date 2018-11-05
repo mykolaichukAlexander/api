@@ -17,13 +17,17 @@ public class User {
 
     private String pass;
 
-    //private Role role;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Role role;
 
     //TODO add registration date
 
     private String email;
 
     private long phone;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     public User(){ }
 }

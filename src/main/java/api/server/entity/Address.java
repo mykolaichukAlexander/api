@@ -10,12 +10,12 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private long id;
 
     private String region;
 
-    private String dostrict;
+    private String district;
 
     private String city;
 }
