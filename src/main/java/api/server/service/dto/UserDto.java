@@ -13,5 +13,5 @@ public class UserDto {
     private String region;
     private String district;
     private String city;
-    private String qwerty;
+    private String role;
 }

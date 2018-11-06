@@ -25,16 +25,10 @@ public class RegistrationController {
     @Autowired
     private final RegistrationService registrationService;
 
-    private final ModelMapper modelMapper;
 
     @PostMapping("/reg")
     public UserDto registration(@RequestBody UserDto user){
-        User user1 = modelMapper.map(user, User.class);
-        log.info(user1.toString());
-        Address address = modelMapper.map(user, Address.class);
-        log.info(address.toString());
-        Role role = modelMapper.map(user, Role.class);
-        log.info(role.toString());
+        log.info("DTO is "+user.toString());
 
 
 

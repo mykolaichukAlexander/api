@@ -1,16 +1,20 @@
 package api.server.entity;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "users")
+@RequiredArgsConstructor
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String login;
@@ -20,7 +24,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Role role;
 
-    //TODO add registration date
+    //@Temporal(TemporalType.TIMESTAMP)
+    private Timestamp registrationDate;
 
     private String email;
 
@@ -29,5 +34,5 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    public User(){ }
+
 }

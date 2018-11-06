@@ -9,12 +9,19 @@ import api.server.entity.repository.UserRopository;
 import api.server.service.RegistrationService;
 import api.server.service.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
@@ -34,12 +41,14 @@ public class RegistrationServiceImpl implements RegistrationService {
     @Override
     public UserDto addUser(UserDto userDto) {
 
-        Address address = modelMapper.map(userDto, Address.class);
-        addressRepository.save(address);
-        Role role = modelMapper.map(userDto, Role.class);
-        roleRepository.save(role);
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         User user = modelMapper.map(userDto, User.class);
+        Date date = new Date();
+        long time = date.getTime();
+        user.setRegistrationDate(new Timestamp(time));
         userRopository.save(user);
+        log.info(user.toString());
+
         return userDto;
 
     }
