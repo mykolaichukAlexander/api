@@ -1,10 +1,7 @@
 package api.server.service.impl;
 
-import api.server.entity.Address;
-import api.server.entity.Role;
+
 import api.server.entity.User;
-import api.server.entity.repository.AddressRepository;
-import api.server.entity.repository.RoleRepository;
 import api.server.entity.repository.UserRopository;
 import api.server.service.RegistrationService;
 import api.server.service.dto.UserDto;
@@ -28,12 +25,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Autowired
     private final UserRopository userRopository;
-
-    @Autowired
-    private final AddressRepository addressRepository;
-
-    @Autowired
-    private final RoleRepository roleRepository;
 
     @Autowired
     private ModelMapper modelMapper;

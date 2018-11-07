@@ -2,20 +2,21 @@ package api.server.controllers;
 
 
 
-import api.server.entity.Address;
-import api.server.entity.Role;
-import api.server.entity.User;
+
+import api.server.api.ApiResponse;
+import api.server.api.Responses;
 import api.server.service.RegistrationService;
 import api.server.service.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 
 import lombok.extern.slf4j.Slf4j;
+
+
+
 
 @Slf4j
 @RestController
@@ -27,12 +28,9 @@ public class RegistrationController {
 
 
     @PostMapping("/reg")
-    public UserDto registration(@RequestBody UserDto user){
-        log.info("DTO is "+user.toString());
-
-
-
-        return registrationService.addUser(user);}
-
+    public ApiResponse<UserDto> registration(@RequestBody UserDto user){
+        registrationService.addUser(user);
+        return Responses.okResp(user);
+    }
 
 }
