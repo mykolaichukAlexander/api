@@ -24,7 +24,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Role role;
 
-    //@Temporal(TemporalType.TIMESTAMP)
     private Timestamp registrationDate;
 
     private String email;

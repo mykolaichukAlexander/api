@@ -29,8 +29,15 @@ public class RegistrationController {
 
     @PostMapping("/reg")
     public ApiResponse<UserDto> registration(@RequestBody UserDto user){
-        registrationService.addUser(user);
-        return Responses.okResp(user);
+        ApiResponse<UserDto> result = null;
+        if (user.getEmail().matches("^.+\\@.+\\.(com|ua)$"))
+        {
+            registrationService.addUser(user);
+            result = Responses.okResp(user,"Registration success");
+        }else {
+            result = Responses.errorResp("Registration error: invslid email");
+        }
+        return result;
     }
 
 }
